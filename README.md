@@ -1,3 +1,4 @@
+Atualizar calendário
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Para ícones
@@ -103,3 +104,137 @@ const styles = StyleSheet.create({
     color: '#A9A9A9',
   },
 });
+
+
+
+
+Tela de exercioss******
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
+
+const CorridaScreen = () => {
+  const [distance, setDistance] = useState(0.25);
+
+  const increaseDistance = () => {
+    setDistance((prev) => parseFloat((prev + 0.25).toFixed(2)));
+  };
+
+  const decreaseDistance = () => {
+    setDistance((prev) => (prev > 0.25 ? parseFloat((prev - 0.25).toFixed(2)) : prev));
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Cabeçalho */}
+      <Text style={styles.title}>Exercícios e Atividade Física</Text>
+      <Text style={styles.subtitle}>
+        Escolha seu tempo praticando e veja seu desempenho total.
+      </Text>
+
+      {/* Imagem */}
+      <Image
+        source={{ uri: 'https://via.placeholder.com/300x200?text=Ilustracao' }} // Substitua pela URL da imagem real
+        style={styles.image}
+        resizeMode="contain"
+      />
+
+      {/* Objetivo */}
+      <Text style={styles.sectionTitle}>Seu objetivo</Text>
+      <View style={styles.goalContainer}>
+        <TouchableOpacity style={styles.button} onPress={decreaseDistance}>
+          <Text style={styles.buttonText}>-</Text>
+        </TouchableOpacity>
+        <Text style={styles.distance}>{distance} km</Text>
+        <TouchableOpacity style={styles.button} onPress={increaseDistance}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Exercício */}
+      <Text style={styles.exerciseLabel}>Exercício</Text>
+
+      {/* Botão de Iniciar */}
+      <TouchableOpacity style={styles.startButton}>
+        <Text style={styles.startButtonText}>Iniciar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  image: {
+    width: 300,
+    height: 200,
+    marginVertical: 20,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+    marginVertical: 10,
+  },
+  goalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  button: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#E0E0E0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 24,
+    color: '#333',
+  },
+  distance: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginHorizontal: 20,
+  },
+  exerciseLabel: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 20,
+  },
+  startButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 8,
+    paddingVertical: 15,
+    paddingHorizontal: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  startButtonText: {
+    fontSize: 18,
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+});
+
+export default CorridaScreen;
